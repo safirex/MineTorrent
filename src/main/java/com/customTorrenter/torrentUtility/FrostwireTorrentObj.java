@@ -18,6 +18,10 @@ public class FrostwireTorrentObj implements Runnable {
 	//Torrent torrent;
 
 	
+	public FrostwireTorrentObj(PendingTorrent pt) {
+		this.downloadDirectory=pt.getDownloadDirectory();
+		this.torrentInfo= new TorrentInfo(pt.getTorrentFile());
+	}
 	
 	public FrostwireTorrentObj(File torrentFile,File downloadDirectory,String downloadName) {
 		this.downloadDirectory=downloadDirectory;

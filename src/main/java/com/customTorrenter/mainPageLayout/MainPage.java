@@ -1,16 +1,19 @@
 package com.customTorrenter.mainPageLayout;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.customTorrenter.application.MainApp;
 import com.customTorrenter.mainPageLayout.subPanels.torrentInfoConfigPanel.TorrentInfoConfigPanel;
+import com.customTorrenter.torrentUIObjects.TorrentObjectComponent;
 import com.customTorrenter.torrentUtility.PendingTorrent;
 import com.frostwire.jlibtorrent.SessionManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.FileChooser;
@@ -65,6 +68,11 @@ public class MainPage {
         torrentConfigPanel.sendPendingList(pendingtTorrentList);
         pendingtTorrentList.clear();
     }
+	
+	
+	
+	
+	
 	
 	
 	@FXML

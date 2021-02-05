@@ -5,12 +5,14 @@ import java.io.IOException;
 
 import com.customTorrenter.mainPageLayout.MainPage;
 import com.customTorrenter.mainPageLayout.subPanels.torrentInfoConfigPanel.TorrentInfoConfigPanel;
+import com.customTorrenter.torrentUIObjects.TorrentObjectComponent;
 import com.customTorrenter.torrentUtility.TorrentObject;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -62,6 +64,22 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	static public TorrentObjectComponent getTorrentUIObject() {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(MainApp.class.getResource("../torrentUIObjects/TorrentObject.fxml"));
+			loader.load();
+			
+			//link the fxml controller with MainApp
+			TorrentObjectComponent startP=loader.getController();
+			return startP;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 	public TorrentInfoConfigPanel getTorrentInfoSetupPanel() {
 		try {
 			// Load fxml layout
