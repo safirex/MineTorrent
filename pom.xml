@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com</groupId>
+  <artifactId>customTorrenter</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>customTorrenter</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<version.openjfx>14</version.openjfx>
+	<version.jdk>11</version.jdk>
+    <junit.version>5.6.2</junit.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+       <groupId>org.junit.jupiter</groupId>
+       <artifactId>junit-jupiter-engine</artifactId>
+       <version>${junit.version}</version>
+       <scope>test</scope>
+    </dependency>
+
+
+		<!-- JavaFX -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-base</artifactId>
+			<version>${version.openjfx}</version>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${version.openjfx}</version>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${version.openjfx}</version>
+			<classifier>win</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>${version.openjfx}</version>
+			<classifier>win</classifier>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>15-ea+4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-maven-plugin</artifactId>
+			<version>0.0.4</version>
+			<type>maven-plugin</type>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
+		<dependency>
+		    <groupId>com.jfoenix</groupId>
+		    <artifactId>jfoenix</artifactId>
+		    <version>9.0.1</version>
+		</dependency>
+  </dependencies>
+  
+  
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openjfx</groupId>
+				<artifactId>javafx-maven-plugin</artifactId>
+				<version>${version.openjfx}</version>
+				<configuration>
+					<mainClass>com.customTorrenter.CusTorrent</mainClass>
+					<source>${version.jdk}</source>
+					<target>${version.jdk}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
