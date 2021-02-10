@@ -2,20 +2,21 @@ package com.customTorrenter.torrentUtility;
 
 import java.io.File;
 
-/*
- * class used a temporary folder for torrent waiting for user's ok
+import com.customTorrenter.application.MainApp;
+
+/**
+ * torrents waiting to be defined a download directory and name
  */
-public class PendingTorrent {
-	String torrentPath,downloadPath,name;
-	
+public class PendingTorrent extends AbstTorrent {
+	String torrentPath,downloadPath;
 	File torrentFile,downloadDirectory;
 	
 	public PendingTorrent(File torrentFile) {
+		super(torrentFile.getName());
 		this.torrentFile=torrentFile;
 		downloadDirectory=torrentFile.getParentFile();
-		name=torrentFile.getName();
-		System.out.println(name);
 		downloadPath=torrentFile.getParent().toString();
+		initUIComponent();
 	}
 	
 	public File getDownloadDirectory() {
@@ -27,7 +28,7 @@ public class PendingTorrent {
 	}
 
 	public PendingTorrent(String downPath,String downName,String torrPath) {
-		name=downName;
+		super(downName);
 		downloadPath=downPath;
 		torrentPath=torrPath;
 	}
@@ -60,6 +61,17 @@ public class PendingTorrent {
 	 */
 	public void confirmed() {
 		
+	}
+	
+	
+	
+
+	/**
+	 * gives the object the appropriate JFX element
+	 */
+	public void initUIComponent() {
+		UIcomponent= MainApp.getTorrentUIObject();
+		UIcomponent.init(this);
 	}
 	
 

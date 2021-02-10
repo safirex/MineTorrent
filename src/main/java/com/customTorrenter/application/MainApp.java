@@ -64,6 +64,10 @@ public class MainApp extends Application {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * give the graphic composent of a torrent
+	 * @return
+	 */
 	static public TorrentObjectComponent getTorrentUIObject() {
 		try {
 			FXMLLoader loader = new FXMLLoader();

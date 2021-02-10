@@ -1,5 +1,6 @@
 package com.customTorrenter.mainPageLayout;
 
+import java.beans.Beans;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,7 +54,7 @@ public class MainPage {
 	@FXML
     void addTorrentAction(ActionEvent event) {
 		FileChooser chooser = new FileChooser();
-        //chooser.setInitialDirectory(f);
+        chooser.setInitialDirectory(new File("C:\\Users\\Xxsafirex\\Desktop\\nh"));
 		List<File> fileList = chooser.showOpenMultipleDialog(app.stage);
 		FileChooser.ExtensionFilter extfilt = 
 				  new FileChooser.ExtensionFilter("torrent files", "*.torrent");
