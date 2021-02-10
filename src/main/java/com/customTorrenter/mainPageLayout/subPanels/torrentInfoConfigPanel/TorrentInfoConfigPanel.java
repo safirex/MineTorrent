@@ -56,7 +56,7 @@ public class TorrentInfoConfigPanel {
 	public void sendPendingList(List<PendingTorrent> list) {
 		torrentList.addAll(list);
 		for (PendingTorrent torr:list) {
-			TorrentObjectComponent obj=(TorrentObjectComponent) torr.getUIComponent();
+			AbstUITorrentObj obj=torr.getUIControler();
 			torrentVBox.getChildren().add(obj.getUIComponent());
 		}
 	}

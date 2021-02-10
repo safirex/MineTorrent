@@ -19,9 +19,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.customTorrenter.mainPageLayout.MainPage">
+<VBox minHeight="-Infinity" minWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.customTorrenter.mainPageLayout.MainPage">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar minHeight="-Infinity" minWidth="-Infinity">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -60,63 +60,67 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.1" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0">
-      <items>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
-                  <VBox layoutX="13.0" layoutY="53.0" prefHeight="311.0" prefWidth="100.0">
+      <HBox minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
+         <children>
+          <SplitPane dividerPositions="0.11333914559721012" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0">
+            <items>
+              <AnchorPane>
+                <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
+                    <font>
+                      <Font size="18.0" fx:id="x1" />
+                    </font>
+                    <textFill>
+                      <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+                    </textFill>
+                  </Label>
+                        <VBox layoutX="13.0" layoutY="53.0" minWidth="100.0">
+                           <children>
+                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="homepage" />
+                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="Downloading" />
+                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="Uploading" />
+                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="Settings" />
+                              <JFXButton onAction="#switchToTorrentConfigPanel" prefHeight="43.0" prefWidth="103.0" text="Torrents config" />
+                           </children>
+                        </VBox>
+                </children>
+              </AnchorPane>
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="20.0">
                      <children>
-                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="homepage" />
-                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="Downloading" />
-                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="Uploading" />
-                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="Settings" />
-                        <JFXButton onAction="#switchToTorrentConfigPanel" prefHeight="43.0" prefWidth="103.0" text="Torrents config" />
+                        <ButtonBar buttonMinWidth="10.0" centerShape="false" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT">
+                          <buttons>
+                              <JFXTextField nodeOrientation="LEFT_TO_RIGHT" promptText="Torrent Name" />
+                              <Separator minWidth="0.0" orientation="VERTICAL" />
+                              <JFXButton text="Stop" />
+                              <JFXButton text="Resume" />
+                              <Separator minWidth="0.0" orientation="VERTICAL" />
+                              <JFXButton text="Delete" />
+                              <JFXButton layoutX="-500.0" minWidth="52.0" onAction="#addTorrentAction" prefHeight="25.0" text="Add" />
+                          </buttons>
+                        </ButtonBar>
+                        <SplitPane dividerPositions="0.7977099236641222" minHeight="300.0" minWidth="200.0" orientation="VERTICAL">
+                           <items>
+                          <ScrollPane fx:id="scrollPane_MainZone" minWidth="20.0">
+                                 <content>
+                                    <VBox fx:id="VB_torrentView" minHeight="-Infinity" minWidth="-Infinity" />
+                                 </content>
+                          </ScrollPane>
+                          <AnchorPane>
+                            <children>
+                              <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                            </children>
+                          </AnchorPane>
+                           </items>
+                        </SplitPane>
                      </children>
                   </VBox>
-          </children>
-        </AnchorPane>
-            <VBox>
-               <children>
-                  <ButtonBar buttonMinWidth="20.0" centerShape="false" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="500.0">
-                    <buttons>
-                        <JFXTextField nodeOrientation="LEFT_TO_RIGHT" promptText="Torrent Name" />
-                        <Separator minWidth="0.0" orientation="VERTICAL" />
-                        <JFXButton text="Stop" />
-                        <JFXButton text="Resume" />
-                        <Separator minWidth="0.0" orientation="VERTICAL" />
-                        <JFXButton text="Delete" />
-                        <JFXButton layoutX="-500.0" minWidth="52.0" onAction="#addTorrentAction" prefHeight="25.0" text="Add" />
-                    </buttons>
-                  </ButtonBar>
-                  <SplitPane dividerPositions="0.7977099236641222" orientation="VERTICAL">
-                     <items>
-                    <ScrollPane fx:id="scrollPane_MainZone" prefHeight="551.0" prefWidth="402.0">
-                           <content>
-                              <VBox fx:id="VB_torrentView" minWidth="-Infinity" />
-                           </content>
-                    </ScrollPane>
-                    <AnchorPane prefHeight="162.0" prefWidth="731.0">
-                      <children>
-                        <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                      </children>
-                    </AnchorPane>
-                     </items>
-                  </SplitPane>
-               </children>
-            </VBox>
-      </items>
-    </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
+            </items>
+          </SplitPane>
+         </children>
+      </HBox>
+    <HBox id="HBox" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">
       <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
+        <Label maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
           <font>
             <Font size="11.0" fx:id="x3" />
           </font>
@@ -124,7 +128,7 @@
             <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
           </textFill>
         </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
+        <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
         <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
       </children>
       <padding>

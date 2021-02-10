@@ -16,7 +16,7 @@ public class PendingTorrent extends AbstTorrent {
 		this.torrentFile=torrentFile;
 		downloadDirectory=torrentFile.getParentFile();
 		downloadPath=torrentFile.getParent().toString();
-		initUIComponent();
+		
 	}
 	
 	public File getDownloadDirectory() {
@@ -69,7 +69,7 @@ public class PendingTorrent extends AbstTorrent {
 	/**
 	 * gives the object the appropriate JFX element
 	 */
-	public void initUIComponent() {
+	public void initUIControler() {
 		UIcomponent= MainApp.getTorrentUIObject();
 		UIcomponent.init(this);
 	}

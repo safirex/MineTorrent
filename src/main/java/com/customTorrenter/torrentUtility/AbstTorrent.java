@@ -7,9 +7,9 @@ public abstract class AbstTorrent implements ImplTorrent{
 	AbstUITorrentObj UIcomponent;
 	public AbstTorrent(String name) {
 		this.name=name;
-		initUIComponent();
+		initUIControler();
 	}
-	public AbstUITorrentObj getUIComponent() {
+	public AbstUITorrentObj getUIControler() {
 		return UIcomponent;
 	}
 }

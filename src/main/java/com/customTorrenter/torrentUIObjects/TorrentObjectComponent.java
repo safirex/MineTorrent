@@ -46,7 +46,7 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 		int letterCount=name.getText().length();
 		System.out.println(name.getText());
 		System.out.println("count = "+letterCount);
-		//name.setPrefColumnCount(letterCount);
+		name.setPrefColumnCount(letterCount);
 		System.out.println(name.getPrefColumnCount());
 		name.autosize();
 	}

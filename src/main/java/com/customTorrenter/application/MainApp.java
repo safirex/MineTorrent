@@ -18,6 +18,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -36,9 +37,13 @@ public class MainApp extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
+
+
+			int height=(int)	Screen.getPrimary().getBounds().getHeight();
+			int width=(int) 	Screen.getPrimary().getBounds().getWidth(); 
 			stage=primaryStage;
 			root = new BorderPane();
-			scene = new Scene(root);
+			scene = new Scene(root);//,width , height);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			setStartPage();
