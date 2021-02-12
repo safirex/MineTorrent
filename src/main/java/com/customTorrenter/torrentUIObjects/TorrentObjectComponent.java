@@ -10,8 +10,11 @@ import com.customTorrenter.torrentUtility.FrostwireTorrentObj;
 import com.customTorrenter.torrentUtility.PendingTorrent;
 import com.jfoenix.controls.JFXTextField;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -58,14 +61,20 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 	
 	
 	
-	public void init(AbstTorrent torrent) {
-		this.pt=(PendingTorrent) torrent;
+	public void init(PendingTorrent torrent) {
+		this.pt= torrent;
 		name.setText(pt.getName());
-		downloadDirectory.setText(pt.getDownloadPath());
+		//downloadDirectory.setText(pt.getDownloadPath());
 		super.setHbox(hbox);
 		initComponentsSize();
 		
 		isSelected.bind(checkbox.selectedProperty());
+		
+		
+	}
+	
+	private void checkUIContent() {
+		
 	}
 	
 	private void initComponentsSize() {
@@ -91,6 +100,9 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 	public boolean isSelected() {
 		return isSelected.get();
 	}
-
+	
+	public StringProperty getDownloadPathProperty() {
+		return downloadDirectory.textProperty();
+	}
 	
 }

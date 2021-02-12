@@ -71,13 +71,13 @@ public class MainPage {
 		chooser.setSelectedExtensionFilter(extfilt);
         if (fileList != null) {
             for (File file: fileList) {
-	        		//System.out.println(file.getAbsolutePath());
 	        		PendingTorrent pt=new PendingTorrent(file);
-	        		pendingtTorrentList.add(pt);
+	        		//pendingtTorrentList.add(pt);
+	        	
 	        		gestion.addTorrent(pt);
             }
         }
-        torrentConfigPanel.sendPendingList(pendingtTorrentList);
+        //torrentConfigPanel.sendPendingList(pendingtTorrentList);
         pendingtTorrentList.clear();
     }
 	

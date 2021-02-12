@@ -34,7 +34,9 @@ public class TorrentGestionner {
 	public void bindPendingTorrentList(ObservableList<AbstTorrent> list) {
 		Predicate<AbstTorrent> byType = torr -> torr.getClass().equals(PendingTorrent.class);
 		
-		Bindings.bindContentBidirectional(list,appTorrentList.filtered(byType));
+		
+
+		Bindings.bindContentBidirectional(list,appTorrentList);//.filtered(byType));
 		//Bindings.bindContentBidirectional(PendingTorrentList, list);
 	}
 	
@@ -42,7 +44,11 @@ public class TorrentGestionner {
 	
 	public boolean addTorrent(AbstTorrent torrent) {
 		System.out.println(torrent.getClass());
-		return appTorrentList.add(torrent);
+		System.out.println(appTorrentList.size());
+		boolean t= appTorrentList.add(torrent);
+		
+		System.out.println(appTorrentList.size());
+		return t;
 	}
 	
 	public boolean addTorrentToConfig(AbstTorrent torrent) {

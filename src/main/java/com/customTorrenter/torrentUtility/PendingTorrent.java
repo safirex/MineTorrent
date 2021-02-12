@@ -6,11 +6,17 @@ import com.customTorrenter.application.MainApp;
 import com.customTorrenter.torrentUIObjects.AbstUITorrentObj;
 import com.customTorrenter.torrentUIObjects.TorrentObjectComponent;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableStringValue;
+
 /**
  * torrents waiting to be defined a download directory and name
  */
 public class PendingTorrent extends AbstTorrent {
-	String torrentPath,downloadPath;
+	String torrentPath;
+	StringProperty downloadPath=new SimpleStringProperty("");
 	File torrentFile,downloadDirectory;
 	
 	TorrentObjectComponent UIcomponent;
@@ -20,10 +26,15 @@ public class PendingTorrent extends AbstTorrent {
 	public PendingTorrent(File torrentFile) {
 		super(torrentFile.getName());
 		this.torrentFile=torrentFile;
+		System.out.println("parent file = "+torrentFile.getParentFile().getPath());
 		downloadDirectory=torrentFile.getParentFile();
-		downloadPath=torrentFile.getParent().toString();
-		
+		Bindings.bindBidirectional(downloadPath,UIcomponent.getDownloadPathProperty());
+		downloadPath.setValue(torrentFile.getParent());
 	}
+	
+	
+	
+	
 	
 	public File getDownloadDirectory() {
 		return downloadDirectory;
@@ -33,16 +44,8 @@ public class PendingTorrent extends AbstTorrent {
 		this.downloadDirectory = downloadDirectory;
 	}
 
-	public PendingTorrent(String downPath,String downName,String torrPath) {
-		super(downName);
-		downloadPath=downPath;
-		torrentPath=torrPath;
-	}
 	public void setName(String name) {
 		this.name=name;
-	}
-	public void setDownloadPath(String path) {
-		downloadPath=path;
 	}
 	
 	
@@ -50,7 +53,7 @@ public class PendingTorrent extends AbstTorrent {
 		return torrentPath;
 	}
 
-	public String getDownloadPath() {
+	public StringProperty getDownloadPath() {
 		return downloadPath;
 	}
 
@@ -77,8 +80,10 @@ public class PendingTorrent extends AbstTorrent {
 	 */
 	public void initUIControler() {
 		UIcomponent= MainApp.getTorrentUIObject();
-		UIcomponent.init(this);
+		UIcomponent.init((PendingTorrent)this);
 	}
 	
-
-}
+	public void bindToUI(StringProperty property) {
+		Bindings.bindBidirectional(property, downloadPath);
+	}
+}	

@@ -74,21 +74,28 @@ public class TorrentInfoConfigPanel {
 		//setup a listener that wil create the GuI element when obj added
 		torrentListObserver.addListener(new ListChangeListener<AbstTorrent>() {
 			public void onChanged(Change<? extends AbstTorrent> c) {
-				// TODO Auto-generated method stub
-				if(c.wasAdded()) {
-					for (int i=c.getFrom();i<c.getTo();i++) {
-						
+				if( c.next() ) {
+					for (AbstTorrent torrent:c.getAddedSubList()) {
+						addTorrentToUI((PendingTorrent)torrent);
+					}
+				}
+				/*if(c.wasAdded()) {
+					for (AbstTorrent torrent:c.getAddedSubList()) {
+						addTorrentToUI((PendingTorrent)torrent);
+						//System.out.println(torrentListObserver.get(i));
 						//PendingTorrent torr=torrentListObserver.get(i);
 						//AbstUITorrentObj obj=torr.getUIComponent();
 						//addUIObject(obj.getUIComponent());
 					}
-				}
+				}*/
 			}
 		});
 	}
 	
-	private void addTorrentToUI(PendingTorrent torr) {
-		AbstUITorrentObj obj=torr.getUIControler();
+	private void addTorrentToUI(PendingTorrent torrent) {
+		System.out.println("add torrent to ui");
+		AbstUITorrentObj obj=torrent.getUIControler();
+		System.out.println(obj.getUIComponent());
 		torrentVBox.getChildren().add(obj.getUIComponent());
 	}
 	
