@@ -62,60 +62,57 @@
     </MenuBar>
       <HBox minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0">
          <children>
-          <SplitPane dividerPositions="0.11333914559721012" focusTraversable="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="-1.0">
-            <items>
-              <AnchorPane>
-                <children>
-                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
-                    <font>
-                      <Font size="18.0" fx:id="x1" />
-                    </font>
-                    <textFill>
-                      <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-                    </textFill>
-                  </Label>
-                        <VBox layoutX="13.0" layoutY="53.0" minWidth="100.0">
-                           <children>
-                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="homepage" />
-                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="Downloading" />
-                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="Uploading" />
-                              <JFXButton prefHeight="43.0" prefWidth="103.0" text="Settings" />
-                              <JFXButton onAction="#switchToTorrentConfigPanel" prefHeight="43.0" prefWidth="103.0" text="Torrents config" />
-                           </children>
-                        </VBox>
-                </children>
-              </AnchorPane>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="20.0">
+        <AnchorPane minWidth="-Infinity">
+          <children>
+            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
+              <font>
+                <Font size="18.0" fx:id="x1" />
+              </font>
+              <textFill>
+                <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
+              </textFill>
+            </Label>
+                  <VBox layoutX="13.0" layoutY="53.0" minWidth="100.0">
                      <children>
-                        <ButtonBar buttonMinWidth="10.0" centerShape="false" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT">
-                          <buttons>
-                              <JFXTextField nodeOrientation="LEFT_TO_RIGHT" promptText="Torrent Name" />
-                              <Separator minWidth="0.0" orientation="VERTICAL" />
-                              <JFXButton text="Stop" />
-                              <JFXButton text="Resume" />
-                              <Separator minWidth="0.0" orientation="VERTICAL" />
-                              <JFXButton text="Delete" />
-                              <JFXButton layoutX="-500.0" minWidth="52.0" onAction="#addTorrentAction" prefHeight="25.0" text="Add" />
-                          </buttons>
-                        </ButtonBar>
-                        <SplitPane dividerPositions="0.7977099236641222" minHeight="300.0" minWidth="200.0" orientation="VERTICAL">
-                           <items>
-                          <ScrollPane fx:id="scrollPane_MainZone" minWidth="20.0">
-                                 <content>
-                                    <VBox fx:id="VB_torrentView" minHeight="-Infinity" minWidth="-Infinity" />
-                                 </content>
-                          </ScrollPane>
-                          <AnchorPane>
-                            <children>
-                              <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                            </children>
-                          </AnchorPane>
-                           </items>
-                        </SplitPane>
+                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="homepage" />
+                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="Downloading" />
+                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="Uploading" />
+                        <JFXButton prefHeight="43.0" prefWidth="103.0" text="Settings" />
+                        <JFXButton onAction="#switchToTorrentConfigPanel" prefHeight="43.0" prefWidth="103.0" text="Torrents config" />
                      </children>
                   </VBox>
-            </items>
-          </SplitPane>
+          </children>
+        </AnchorPane>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="20.0">
+               <children>
+                  <ButtonBar buttonMinWidth="10.0" centerShape="false" minWidth="50.0" nodeOrientation="RIGHT_TO_LEFT">
+                    <buttons>
+                        <JFXTextField minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" promptText="Torrent Name" />
+                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" orientation="VERTICAL" />
+                        <JFXButton minWidth="-Infinity" text="Stop" />
+                        <JFXButton minWidth="-Infinity" text="Resume" />
+                        <Separator maxHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" />
+                        <JFXButton minWidth="-Infinity" text="Delete" />
+                        <JFXButton minWidth="-Infinity" onAction="#addTorrentAction" prefHeight="25.0" text="Add" />
+                    </buttons>
+                  </ButtonBar>
+                  <SplitPane dividerPositions="0.7977099236641222" minHeight="300.0" orientation="VERTICAL">
+                     <items>
+                    <ScrollPane fx:id="scrollPane_MainZone" minWidth="-Infinity">
+                           <content>
+                              <VBox fx:id="VB_torrentView" minHeight="-Infinity" minWidth="-Infinity" />
+                           </content>
+                    </ScrollPane>
+                    <AnchorPane minWidth="-Infinity">
+                      <children>
+                        <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+                      </children>
+                    </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: blue;" />
          </children>
       </HBox>
     <HBox id="HBox" alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0">

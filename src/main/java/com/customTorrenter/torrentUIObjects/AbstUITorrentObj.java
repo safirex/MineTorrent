@@ -1,9 +1,8 @@
 package com.customTorrenter.torrentUIObjects;
 
-import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 
-public abstract class AbstUITorrentObj extends Node implements ImplTorrentObj{
+public abstract class AbstUITorrentObj  implements ImplTorrentObj{
 	HBox hbox;
 	public void setHbox(HBox hb) {
 		hbox=hb;

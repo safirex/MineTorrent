@@ -10,6 +10,7 @@ import com.customTorrenter.application.MainApp;
 import com.customTorrenter.mainPageLayout.subPanels.torrentInfoConfigPanel.TorrentInfoConfigPanel;
 import com.customTorrenter.torrentUIObjects.TorrentObjectComponent;
 import com.customTorrenter.torrentUtility.PendingTorrent;
+import com.customTorrenter.torrentUtility.TorrentGestionner;
 import com.frostwire.jlibtorrent.SessionManager;
 
 import javafx.event.ActionEvent;
@@ -26,7 +27,7 @@ public class MainPage {
 	final SessionManager s = new SessionManager();
 	final List<PendingTorrent> pendingtTorrentList=new ArrayList<PendingTorrent>();
 	TorrentInfoConfigPanel torrentConfigPanel;
-	
+	TorrentGestionner gestion;
 	
 	@FXML
 	ScrollPane scrollPane_MainZone;
@@ -42,6 +43,9 @@ public class MainPage {
 	public void init() {
 		torrentConfigPanel=app.getTorrentInfoSetupPanel();
 		torrentConfigPanel.init();
+		
+		gestion=TorrentGestionner.getInstance();
+		
 	}
 	
 	/*
@@ -51,6 +55,12 @@ public class MainPage {
 	@FXML
 	private void initialize() {}
 	
+	
+	
+	/**
+	 * open the file chooser
+	 * @param event
+	 */
 	@FXML
     void addTorrentAction(ActionEvent event) {
 		FileChooser chooser = new FileChooser();
@@ -61,9 +71,10 @@ public class MainPage {
 		chooser.setSelectedExtensionFilter(extfilt);
         if (fileList != null) {
             for (File file: fileList) {
-	        		System.out.println(file.getAbsolutePath());
+	        		//System.out.println(file.getAbsolutePath());
 	        		PendingTorrent pt=new PendingTorrent(file);
 	        		pendingtTorrentList.add(pt);
+	        		gestion.addTorrent(pt);
             }
         }
         torrentConfigPanel.sendPendingList(pendingtTorrentList);

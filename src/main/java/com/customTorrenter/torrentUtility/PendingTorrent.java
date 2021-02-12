@@ -3,6 +3,8 @@ package com.customTorrenter.torrentUtility;
 import java.io.File;
 
 import com.customTorrenter.application.MainApp;
+import com.customTorrenter.torrentUIObjects.AbstUITorrentObj;
+import com.customTorrenter.torrentUIObjects.TorrentObjectComponent;
 
 /**
  * torrents waiting to be defined a download directory and name
@@ -11,6 +13,10 @@ public class PendingTorrent extends AbstTorrent {
 	String torrentPath,downloadPath;
 	File torrentFile,downloadDirectory;
 	
+	TorrentObjectComponent UIcomponent;
+	public TorrentObjectComponent getUIControler() {
+		return UIcomponent;
+	}
 	public PendingTorrent(File torrentFile) {
 		super(torrentFile.getName());
 		this.torrentFile=torrentFile;
