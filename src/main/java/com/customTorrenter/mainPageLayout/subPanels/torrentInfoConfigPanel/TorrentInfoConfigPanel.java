@@ -88,6 +88,9 @@ public class TorrentInfoConfigPanel {
 					for (AbstTorrent torrent:c.getAddedSubList()) {
 						addTorrentToUI((PendingTorrent)torrent);
 					}
+					for(AbstTorrent torrent:c.getRemoved()) {
+						removeUIObject(torrent.getUIControler().getUIComponent());
+					}
 				}
 				/*if(c.wasAdded()) {
 					for (AbstTorrent torrent:c.getAddedSubList()) {
@@ -110,18 +113,13 @@ public class TorrentInfoConfigPanel {
 	}
 	
 	
-	public void sendPendingList(List<PendingTorrent> list) {
-		torrentList.addAll(list);
-		for (PendingTorrent torr:list) {
-			addTorrentToUI(torr);
-		}
-	}
-	
 	
 	public void addUIObject(Node obj) {
 		torrentVBox.getChildren().add(obj);
 	}
-	
+	public void removeUIObject(Node obj) {
+		torrentVBox.getChildren().remove(obj);
+	}
 	
 	
 }
