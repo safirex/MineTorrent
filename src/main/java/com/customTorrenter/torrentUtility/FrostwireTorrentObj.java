@@ -53,8 +53,8 @@ public class FrostwireTorrentObj extends AbstTorrent implements Runnable {
 	
 	public void initUIControler() {
 		// TODO Auto-generated method stub
-		UIcomponent= MainApp.getTorrentUIObject();
-		UIcomponent.init(this);
+		//UIcomponent= MainApp.getTorrentUIObject();
+		//UIcomponent.init(this);
 	}
 
 }

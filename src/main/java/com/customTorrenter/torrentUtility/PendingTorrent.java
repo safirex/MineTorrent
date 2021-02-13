@@ -29,7 +29,9 @@ public class PendingTorrent extends AbstTorrent {
 		System.out.println("parent file = "+torrentFile.getParentFile().getPath());
 		downloadDirectory=torrentFile.getParentFile();
 		Bindings.bindBidirectional(downloadPath,UIcomponent.getDownloadPathProperty());
+		//Bindings.bindBidirectional(isSelected, UIcomponent.getIsSelected());
 		downloadPath.setValue(torrentFile.getParent());
+		
 	}
 	
 	
@@ -64,16 +66,6 @@ public class PendingTorrent extends AbstTorrent {
 	public File getTorrentFile() {
 		return torrentFile;
 	}
-
-	/*
-	 * generate a torrentObject and store it in the torrent list of MainApp
-	 */
-	public void confirmed() {
-		
-	}
-	
-	
-	
 
 	/**
 	 * gives the object the appropriate JFX element

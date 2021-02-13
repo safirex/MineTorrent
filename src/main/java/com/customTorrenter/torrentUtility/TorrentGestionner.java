@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * 
@@ -16,12 +17,18 @@ import javafx.collections.ObservableList;
  */
 public class TorrentGestionner {
 	ObservableList<AbstTorrent> appTorrentList=FXCollections.observableArrayList();
-	ObservableList<FrostwireTorrentObj> readyTorrentList =FXCollections.observableArrayList();
-	ObservableList<PendingTorrent> PendingTorrentList =FXCollections.observableArrayList();
+	FilteredList<AbstTorrent> pendingTorrentList,activeTorrentList;
 	
 	private final static TorrentGestionner instance=new TorrentGestionner();
 	
-	private TorrentGestionner() {}
+	private TorrentGestionner() {
+		Predicate<AbstTorrent> pending = torr -> torr.getClass().equals(PendingTorrent.class);
+		Predicate<AbstTorrent> active = torr -> torr.getClass().equals(PendingTorrent.class);
+		
+	
+		pendingTorrentList= appTorrentList.filtered(pending);
+		activeTorrentList=appTorrentList.filtered(active);
+	}
 	
 	public static TorrentGestionner getInstance() {
 		return instance;
@@ -32,11 +39,10 @@ public class TorrentGestionner {
 	 * @param list
 	 */
 	public void bindPendingTorrentList(ObservableList<AbstTorrent> list) {
-		Predicate<AbstTorrent> byType = torr -> torr.getClass().equals(PendingTorrent.class);
-		
 		
 
-		Bindings.bindContentBidirectional(list,appTorrentList);//.filtered(byType));
+		Bindings.bindContentBidirectional(list,pendingTorrentList);//.filtered(byType));
+		
 		//Bindings.bindContentBidirectional(PendingTorrentList, list);
 	}
 	
@@ -44,22 +50,23 @@ public class TorrentGestionner {
 	
 	public boolean addTorrent(AbstTorrent torrent) {
 		System.out.println(torrent.getClass());
-		System.out.println(appTorrentList.size());
 		boolean t= appTorrentList.add(torrent);
-		
-		System.out.println(appTorrentList.size());
+		check();
 		return t;
 	}
-	
-	public boolean addTorrentToConfig(AbstTorrent torrent) {
-		return PendingTorrentList.add((PendingTorrent) torrent);
+	private void check() {
+		
 	}
 	
 	
 	
 	
-	public boolean addTorrentToDownload(AbstTorrent torrent) {
-		return readyTorrentList.add((FrostwireTorrentObj)torrent);
+	public void confirm(AbstTorrent torrent) {
+		System.out.println(torrent.name+" got confirmed");
+		System.out.println(appTorrentList.size());
+		appTorrentList.remove(torrent);
+		System.out.println(appTorrentList.size());
+		appTorrentList.add(new FrostwireTorrentObj((PendingTorrent)torrent));
 	}
 	
 }

@@ -3,6 +3,7 @@ package com.customTorrenter.mainPageLayout.subPanels.torrentInfoConfigPanel;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.customTorrenter.application.MainApp;
 import com.customTorrenter.torrentUIObjects.AbstUITorrentObj;
@@ -26,10 +27,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class TorrentInfoConfigPanel {
-	private List<PendingTorrent> torrentList= new ArrayList<PendingTorrent>();
+	//private List<PendingTorrent> torrentList= new ArrayList<PendingTorrent>();
 	
 	//binded to torrentGestionner obs list
-	private ObservableList<AbstTorrent> torrentListObserver=FXCollections.observableArrayList(torrentList);
+	private ObservableList<AbstTorrent> torrentListObserver=FXCollections.observableArrayList();
 	
 	
 	File lastDownloadDir;
@@ -46,15 +47,24 @@ public class TorrentInfoConfigPanel {
 	
 	@FXML
 	private void acceptButtonAction(){
-		for(PendingTorrent torrent:torrentList) {
-			if(torrent.getUIControler().isSelected())
-				torrent.confirmed();
+		// torrent is selected  en abstrait ?
+		//TODO
+		Predicate<AbstTorrent> torrentPredicate= torrent -> torrent.isSelected();
+		
+		for(AbstTorrent torrent:torrentListObserver.filtered(torrentPredicate)) {
+			//the torrent has been checked in UI
+			PendingTorrent torr=(PendingTorrent)torrent;
+			torr.setDownloadDirectory(lastDownloadDir);
+			TorrentGestionner.getInstance().confirm(torrent);
 		}
 	}
 	public Node getPaneContent() {
 		return torrentVBox;
 	}
 	
+	/**
+	 * define the event handler of the  topmost checkbox 
+	 */
 	private void setMainCheckBox() {
 		selectAllCheckbox.setOnAction(event->{
 			List<Node> hboxList=torrentVBox.getChildren();

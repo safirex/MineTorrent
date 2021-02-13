@@ -8,6 +8,7 @@ import org.omg.CORBA.SystemException;
 import com.customTorrenter.torrentUtility.AbstTorrent;
 import com.customTorrenter.torrentUtility.FrostwireTorrentObj;
 import com.customTorrenter.torrentUtility.PendingTorrent;
+import com.customTorrenter.torrentUtility.TorrentGestionner;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.beans.binding.Bindings;
@@ -46,36 +47,26 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 	HBox hbox;	
 	
 	PendingTorrent pt;
-	FrostwireTorrentObj torrent;
 	
 	private BooleanProperty isSelected = new SimpleBooleanProperty();
 	
 	
 	@FXML
 	private void acceptButtonClicked() {
-		System.out.print(pt.getName());
-		
 		pt.setDownloadDirectory(new File(downloadDirectory.getText()));
-		System.out.print(" got accepted to "+ downloadDirectory.getText());
+		TorrentGestionner.getInstance().confirm(pt);
 	}
 	
 	
 	
-	public void init(PendingTorrent torrent) {
-		this.pt= torrent;
+	public void init(AbstTorrent torrent) {
+		this.pt=(PendingTorrent) torrent;
 		name.setText(pt.getName());
-		//downloadDirectory.setText(pt.getDownloadPath());
 		super.setHbox(hbox);
 		initComponentsSize();
-		
 		isSelected.bind(checkbox.selectedProperty());
-		
-		
 	}
 	
-	private void checkUIContent() {
-		
-	}
 	
 	private void initComponentsSize() {
 		/*
@@ -91,9 +82,6 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 		System.out.println(name.getPrefColumnCount());
 		name.autosize();
 	}
-	public void accepted() {
-		torrent= new FrostwireTorrentObj(pt);
-	}
 	public HBox getUIComponent() {
 		return hbox;
 	}	
@@ -101,6 +89,12 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 		return isSelected.get();
 	}
 	
+	public BooleanProperty getIsSelected() {
+		return isSelected;
+	}
+
+
+
 	public StringProperty getDownloadPathProperty() {
 		return downloadDirectory.textProperty();
 	}
