@@ -2,6 +2,7 @@ package com.customTorrenter.mainPageLayout.subPanels.torrentInfoConfigPanel;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -46,18 +47,21 @@ public class TorrentInfoConfigPanel {
 	JFXButton acceptSelectedButton;
 	
 	@FXML
-	private void acceptButtonAction(){
-		// torrent is selected  en abstrait ?
-		//TODO
+	private void acceptButtonAction() {
 		Predicate<AbstTorrent> torrentPredicate= torrent -> torrent.isSelected();
 		
-		for(AbstTorrent torrent:torrentListObserver.filtered(torrentPredicate)) {
-			//the torrent has been checked in UI
-			PendingTorrent torr=(PendingTorrent)torrent;
-			torr.setDownloadDirectory(lastDownloadDir);
-			TorrentGestionner.getInstance().confirm(torrent);
+		//has to be done like that because of in loop modification
+		Object[] torrList= torrentListObserver.filtered(torrentPredicate).toArray();
+		for(int i=0;i<torrList.length;i++ ) {
+			PendingTorrent torrent=(PendingTorrent)torrList[i];			
+			torrent.setDownloadDirectory(lastDownloadDir);
+			torrent.confirm();
+			
+			//TODO: generate Frostwire Torrent obj
+			//TorrentGestionner.getInstance().confirm(torrent);
 		}
 	}
+	
 	public Node getPaneContent() {
 		return torrentVBox;
 	}
@@ -92,15 +96,6 @@ public class TorrentInfoConfigPanel {
 						removeUIObject(torrent.getUIControler().getUIComponent());
 					}
 				}
-				/*if(c.wasAdded()) {
-					for (AbstTorrent torrent:c.getAddedSubList()) {
-						addTorrentToUI((PendingTorrent)torrent);
-						//System.out.println(torrentListObserver.get(i));
-						//PendingTorrent torr=torrentListObserver.get(i);
-						//AbstUITorrentObj obj=torr.getUIComponent();
-						//addUIObject(obj.getUIComponent());
-					}
-				}*/
 			}
 		});
 	}
@@ -109,15 +104,18 @@ public class TorrentInfoConfigPanel {
 		System.out.println("add torrent to ui");
 		AbstUITorrentObj obj=torrent.getUIControler();
 		System.out.println(obj.getUIComponent());
-		torrentVBox.getChildren().add(obj.getUIComponent());
+		addUIObject(obj.getUIComponent());
 	}
 	
 	
-	
-	public void addUIObject(Node obj) {
+	/**
+	 * might not even be useful if bind vbox.getchildren to abstTorrentList
+	 * @param obj
+	 */
+	private void addUIObject(Node obj) {
 		torrentVBox.getChildren().add(obj);
 	}
-	public void removeUIObject(Node obj) {
+	private void removeUIObject(Node obj) {
 		torrentVBox.getChildren().remove(obj);
 	}
 	

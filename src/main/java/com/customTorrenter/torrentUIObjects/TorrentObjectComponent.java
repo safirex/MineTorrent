@@ -48,13 +48,12 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 	
 	PendingTorrent pt;
 	
-	private BooleanProperty isSelected = new SimpleBooleanProperty();
-	
 	
 	@FXML
 	private void acceptButtonClicked() {
 		pt.setDownloadDirectory(new File(downloadDirectory.getText()));
 		TorrentGestionner.getInstance().confirm(pt);
+		
 	}
 	
 	
@@ -64,8 +63,8 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 		name.setText(pt.getName());
 		super.setHbox(hbox);
 		initComponentsSize();
-		isSelected.bind(checkbox.selectedProperty());
-	}
+		//isSelected.bind(checkbox.selectedProperty());
+		pt.getIsSelected().bind(checkbox.selectedProperty());	}
 	
 	
 	private void initComponentsSize() {
@@ -85,13 +84,7 @@ public class TorrentObjectComponent extends AbstUITorrentObj{
 	public HBox getUIComponent() {
 		return hbox;
 	}	
-	public boolean isSelected() {
-		return isSelected.get();
-	}
 	
-	public BooleanProperty getIsSelected() {
-		return isSelected;
-	}
 
 
 

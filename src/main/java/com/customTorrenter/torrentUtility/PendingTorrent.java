@@ -35,7 +35,9 @@ public class PendingTorrent extends AbstTorrent {
 	}
 	
 	
-	
+	public boolean confirm() {
+		return TorrentGestionner.getInstance().confirm(this);
+	}
 	
 	
 	public File getDownloadDirectory() {
